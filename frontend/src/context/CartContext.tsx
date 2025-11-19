@@ -7,8 +7,8 @@ type CartItem = { product: Product; quantity: number };
 interface CartContextValue {
     items: CartItem[];
     addItem: (product: Product) => void;
-    removeItem: (id: string) => void;
-    updateQuantity: (id: string, qty: number) => void;
+    removeItem: (id: number) => void;
+    updateQuantity: (id: number, qty: number) => void;
     clear: () => void;
 }
 
@@ -30,12 +30,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         toast.success(`${product.name} added to bag`);
     };
 
-    const removeItem = (id: string) => {
+    const removeItem = (id: number) => {
         setItems((prev) => prev.filter((i) => i.product.id !== id));
     };
 
-    const updateQuantity = (id: string, qty: number) => {
-        setItems((prev) => prev.map((i) => (i.product.id === id ? { ...i, quantity: qty } : i)));
+    const updateQuantity = (id: number, qty: number) => {
+        const normalizedQty = Number.isFinite(qty) && qty > 0 ? qty : 1;
+        setItems((prev) => prev.map((i) => (i.product.id === id ? { ...i, quantity: normalizedQty } : i)));
     };
 
     const clear = () => setItems([]);

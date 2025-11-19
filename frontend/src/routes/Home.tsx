@@ -55,7 +55,7 @@ const Home = () => {
                                 <CardContent>
                                     <Typography variant="h6">{product.name}</Typography>
                                     <Typography variant="body2" color="text.secondary">
-                                        {product.collection}
+                                        {product.collectionName}
                                     </Typography>
                                     <Typography variant="subtitle1" mt={1} fontWeight={700}>
                                         R{product.price}

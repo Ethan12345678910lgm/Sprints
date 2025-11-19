@@ -3,15 +3,19 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Product } from '../data/mockData';
 import { useCart } from '../context/CartContext';
 
+const FALLBACK_IMAGE = 'https://placehold.co/600x400?text=Ubuntu+Threads';
+
 const ProductCard = ({ product }: { product: Product }) => {
     const { addItem } = useCart();
+    const coverImage = product.images[0] ?? FALLBACK_IMAGE;
+
     return (
         <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-            <CardMedia component="img" height="200" image={product.image} alt={product.name} />
+            <CardMedia component="img" height="200" image={coverImage} alt={product.name} />
             <CardContent sx={{ flexGrow: 1 }}>
                 <Typography variant="h6">{product.name}</Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {product.collection} · {product.materials}
+                    {product.collectionName} · {product.materials}
                 </Typography>
                 <Typography variant="subtitle1" mt={1} fontWeight={700}>
                     R{product.price}

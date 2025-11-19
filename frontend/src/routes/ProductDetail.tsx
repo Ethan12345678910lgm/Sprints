@@ -8,22 +8,31 @@ import { useCart } from '../context/CartContext';
 const ProductDetail = () => {
     const { id } = useParams();
     const [product, setProduct] = useState<Product | null>(null);
+    const [loading, setLoading] = useState(true);
     const { addItem } = useCart();
 
     useEffect(() => {
-        if (id) {
-            fetchProduct(id).then((data) => setProduct(data));
-        }
+        if (!id) return;
+        setLoading(true);
+        fetchProduct(id).then((data) => {
+            setProduct(data);
+            setLoading(false);
+        });
     }, [id]);
 
-    if (!product) return <Typography>Loading...</Typography>;
+    if (loading) return <Typography>Loading...</Typography>;
+    if (!product) return <Typography>Product not found.</Typography>;
 
     return (
         <Grid container spacing={4}>
             <Grid item xs={12} md={6}>
                 <Card>
                     <CardContent>
-                        <img src={product.image} alt={product.name} style={{ width: '100%', borderRadius: 12 }} />
+                        <img
+                            src={product.images[0] ?? 'https://placehold.co/800x600?text=Ubuntu+Threads'}
+                            alt={product.name}
+                            style={{ width: '100%', borderRadius: 12 }}
+                        />
                     </CardContent>
                 </Card>
             </Grid>

@@ -18,7 +18,11 @@ const CartPage = () => {
                         <Card key={item.product.id} sx={{ mb: 2 }}>
                             <CardContent>
                                 <Stack direction="row" spacing={2} alignItems="center">
-                                    <img src={item.product.image} alt={item.product.name} width={96} />
+                                    <img
+                                        src={item.product.images[0] ?? 'https://placehold.co/400x400?text=Ubuntu+Threads'}
+                                        alt={item.product.name}
+                                        width={96}
+                                    />
                                     <Box flex={1}>
                                         <Typography variant="h6">{item.product.name}</Typography>
                                         <Typography color="text.secondary">R{item.product.price}</Typography>
