@@ -11,6 +11,7 @@ import java.security.Key;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 @Component
@@ -33,9 +34,14 @@ public class JwtUtil {
     }
 
     public String generateToken(String subject, Map<String, Object> claims) {
+        Map<String, Object> jwtClaims = new HashMap<>();
+        if (claims != null) {
+            jwtClaims.putAll(claims);
+        }
+
         return Jwts.builder()
+                .setClaims(jwtClaims)
                 .setSubject(subject)
-                .setClaims(claims)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(key, SignatureAlgorithm.HS256)
