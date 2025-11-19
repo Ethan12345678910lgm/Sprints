@@ -1,0 +1,9 @@
+# Node / frontend artifacts
+frontend/node_modules/
+frontend/dist/
+
+# Java target directories
+backend/target/
+
+# IDE files
+.idea/
