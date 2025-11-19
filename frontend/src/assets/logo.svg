@@ -1,0 +1,5 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ubuntu Threads logo">
+    <rect width="120" height="120" rx="20" fill="#6E4B32" />
+    <path d="M32 30h16v60c0 6.6 5.4 12 12 12s12-5.4 12-12V30h16v60c0 15.46-12.54 28-28 28s-28-12.54-28-28V30z" fill="#DCC7A1" />
+    <path d="M40 30h12v50c0 5.52 4.48 10 10 10s10-4.48 10-10V30h12v50c0 12.15-9.85 22-22 22s-22-9.85-22-22V30z" fill="#7D8B52" />
+</svg>

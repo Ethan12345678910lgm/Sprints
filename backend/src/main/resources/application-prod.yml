@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/ubuntuthreads
+    username: ubuntu
+    password: threads
+  jpa:
+    hibernate:
+      ddl-auto: update
+jwt:
+  secret: change-me
+cors:
+  allowed-origins: https://ubuntuthreads.com
