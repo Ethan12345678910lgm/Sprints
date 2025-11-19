@@ -7,6 +7,7 @@ type RawProduct = Partial<Product> & {
     images?: unknown;
     tags?: unknown;
     sizes?: unknown;
+    collection?: string;
 };
 
 const api = axios.create({ baseURL: 'http://localhost:8080/api' });
