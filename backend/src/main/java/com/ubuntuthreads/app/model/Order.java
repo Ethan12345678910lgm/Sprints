@@ -11,7 +11,8 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "customer_id")
     private Customer customer;
     @OneToMany(cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
