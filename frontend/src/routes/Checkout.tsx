@@ -1,19 +1,22 @@
-import { Box, Button, Card, CardContent, Typography } from '@mui/material';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements, CardElement } from '@stripe/react-stripe-js';
+import { Box, Button, Card, CardContent, Stack, TextField, Typography } from '@mui/material';
 import toast from 'react-hot-toast';
-
-const stripePromise = loadStripe('pk_test_demo');
 
 const CheckoutForm = () => (
     <Card variant="outlined">
         <CardContent>
             <Typography gutterBottom>Payment details (demo)</Typography>
-            <CardElement options={{ hidePostalCode: true }} />
+            <Stack spacing={2}>
+                <TextField label="Cardholder name" fullWidth autoComplete="cc-name" />
+                <TextField label="Card number" fullWidth autoComplete="cc-number" />
+                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+                    <TextField label="Expiry" fullWidth autoComplete="cc-exp" placeholder="MM/YY" />
+                    <TextField label="CVC" fullWidth autoComplete="cc-csc" />
+                </Stack>
+            </Stack>
             <Button
                 fullWidth
                 variant="contained"
-                sx={{ mt: 2 }}
+                sx={{ mt: 3 }}
                 onClick={() => toast.success('Demo payment succeeded (test mode)')}
             >
                 Pay R1200
@@ -27,9 +30,10 @@ const Checkout = () => (
         <Typography variant="h4" fontWeight={700} gutterBottom>
             Checkout
         </Typography>
-        <Elements stripe={stripePromise}>
-            <CheckoutForm />
-        </Elements>
+        <Typography color="text.secondary" mb={3}>
+            No live payment is processed. Enter any details to preview the experience.
+        </Typography>
+        <CheckoutForm />
     </Box>
 );
 

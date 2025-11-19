@@ -14,8 +14,6 @@
     "@emotion/styled": "^11.11.5",
     "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.20",
-    "@stripe/react-stripe-js": "^2.8.0",
-    "@stripe/stripe-js": "^1.59.1",
     "axios": "^1.7.4",
     "firebase": "^10.13.0",
     "lucide-react": "^0.424.0",
