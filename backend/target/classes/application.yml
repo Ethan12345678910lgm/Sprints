@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: dev
+jwt:
+  secret: super-secret-ubuntu-threads
+  expiration: 86400000
