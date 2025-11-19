@@ -12,8 +12,12 @@ export default [
         languageOptions: {
             parser: tsParser,
             ecmaVersion: 'latest',
-            sourceType: 'module'
-        },
+            sourceType: 'module',
+            globals: {
+                window: 'readonly',
+                document: 'readonly',
+                HTMLElement: 'readonly'
+            }        },
         plugins: {
             'react-hooks': reactHooks,
             react: reactPlugin,

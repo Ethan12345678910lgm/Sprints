@@ -11,6 +11,14 @@ export type Product = {
     images: string[];
 };
 
+export type Article = {
+    slug: string;
+    title: string;
+    excerpt: string;
+    content: string;
+    image: string;
+};
+
 const sharedImages = {
     kimono: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80',
     dress: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
@@ -68,7 +76,7 @@ export const products: Product[] = [
     }
 ];
 
-export const articles = [
+export const articles: Article[] = [
     {
         slug: 'crafting-with-community',
         title: 'Crafting with Community',

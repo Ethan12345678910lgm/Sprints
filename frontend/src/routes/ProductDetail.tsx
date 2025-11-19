@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Box, Grid, Typography, Chip, Button, Stack, Card, CardContent } from '@mui/material';
+import { Grid, Typography, Chip, Button, Stack, Card, CardContent } from '@mui/material';
 import { fetchProduct } from '../services/apiClient';
 import { Product } from '../data/mockData';
 import { useCart } from '../context/CartContext';

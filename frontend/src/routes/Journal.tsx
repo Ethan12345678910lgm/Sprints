@@ -3,9 +3,10 @@ import { Grid, Card, CardMedia, CardContent, Typography, Button } from '@mui/mat
 import { useNavigate } from 'react-router-dom';
 import SectionHeader from '../components/SectionHeader';
 import { fetchArticles } from '../services/apiClient';
+import { Article } from '../data/mockData';
 
 const Journal = () => {
-    const [posts, setPosts] = useState<any[]>([]);
+    const [posts, setPosts] = useState<Article[]>([]);
     const navigate = useNavigate();
 
     useEffect(() => {

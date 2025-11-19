@@ -1,20 +1,28 @@
 import axios from 'axios';
-import { products, articles, Product } from '../data/mockData';
+import { products, articles, Product, Article } from '../data/mockData';
+
+type RawProduct = Partial<Product> & {
+    price?: number | string;
+    image?: string;
+    images?: unknown;
+    tags?: unknown;
+    sizes?: unknown;
+};
 
 const api = axios.create({ baseURL: 'http://localhost:8080/api' });
 
-const normalizeProduct = (raw: any): Product => ({
-    id: Number(raw.id),
+const normalizeProduct = (raw: RawProduct): Product => ({
+    id: Number(raw.id ?? 0),
     name: raw.name ?? '',
     slug: raw.slug ?? '',
     description: raw.description ?? '',
     price: typeof raw.price === 'number' ? raw.price : Number(raw.price ?? 0),
-    sizes: Array.isArray(raw.sizes) ? raw.sizes : [],
+    sizes: Array.isArray(raw.sizes) ? raw.sizes.map(String) : [],
     materials: raw.materials ?? '',
     collectionName: raw.collectionName ?? raw.collection ?? '',
-    tags: Array.isArray(raw.tags) ? raw.tags : [],
+    tags: Array.isArray(raw.tags) ? raw.tags.map(String) : [],
     images: Array.isArray(raw.images)
-        ? raw.images
+        ? raw.images.map(String)
         : raw.image
             ? [raw.image]
             : []
@@ -39,10 +47,10 @@ export async function fetchProduct(id: string): Promise<Product | null> {
     }
 }
 
-export async function fetchArticles() {
+export async function fetchArticles(): Promise<Article[]> {
     try {
         const { data } = await api.get('/journal');
-        return data;
+        return Array.isArray(data) ? data : [];
     } catch (error) {
         return articles;
     }
