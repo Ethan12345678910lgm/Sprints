@@ -8,8 +8,10 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -37,5 +39,14 @@ public class ProductControllerTest {
         mockMvc.perform(get("/api/products").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].name").value("Test"));
+    }
+
+    @Test
+    void returnsNotFoundWhenProductIsMissing() throws Exception {
+        Mockito.when(productService.findById(42L))
+                .thenThrow(new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        mockMvc.perform(get("/api/products/42").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
     }
 }
