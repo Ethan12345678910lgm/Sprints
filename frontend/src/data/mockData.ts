@@ -19,11 +19,22 @@ export type Article = {
     image: string;
 };
 
+export type Event = {
+    title: string;
+    date: string;
+    description: string;
+    location: string;
+    venue: string;
+    latitude: number;
+    longitude: number;
+};
+
 const sharedImages = {
     kimono: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80',
     dress: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
     shirt: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80',
-    jacket: 'https://images.unsplash.com/photo-1496747611180-206a5c8c46c2?auto=format&fit=crop&w=800&q=80'};
+    jacket: 'https://images.unsplash.com/photo-1496747611180-206a5c8c46c2?auto=format&fit=crop&w=800&q=80'
+};
 
 export const products: Product[] = [
     {
@@ -93,17 +104,23 @@ export const articles: Article[] = [
     }
 ];
 
-export const events = [
+export const events: Event[] = [
     {
         title: 'Sea Point Sunrise Swap',
         date: '2024-08-12',
         description: 'Bring pre-loved garments and swap at the Sea Point promenade.',
-        location: 'Sea Point, Cape Town'
+        location: 'Sea Point, Cape Town',
+        venue: 'Sea Point Promenade',
+        latitude: -33.9125,
+        longitude: 18.3871
     },
     {
         title: 'Makers Market Pop-up',
         date: '2024-09-05',
         description: 'Showcasing co-op partners and live mending.',
-        location: 'Woodstock Exchange'
+        location: 'Woodstock Exchange',
+        venue: '66-68 Albert Rd, Woodstock',
+        latitude: -33.9267,
+        longitude: 18.4486
     }
 ];

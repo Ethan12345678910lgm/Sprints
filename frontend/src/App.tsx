@@ -19,7 +19,7 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 
 function App() {
     return (
-        <Box sx={{ backgroundColor: '#F9F7F2', minHeight: '100vh' }}>
+        <Box sx={{ background: 'linear-gradient(145deg, #f9f7f2 0%, #f4eddf 55%, #efe4d3 100%)', minHeight: '100vh' }}>
             <Navbar />
             <Container maxWidth="lg" sx={{ py: 4 }}>
                 <Routes>
