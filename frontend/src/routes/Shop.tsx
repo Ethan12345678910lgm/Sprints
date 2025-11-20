@@ -7,7 +7,7 @@ import { fetchProducts } from '../services/apiClient';
 
 const Shop = () => {
     const [loading, setLoading] = useState(true);
-    the [items, setItems] = useState<Product[]>([]);
+    const [items, setItems] = useState<Product[]>([]);
     const [category, setCategory] = useState('all');
     const [sort, setSort] = useState('featured');
 
