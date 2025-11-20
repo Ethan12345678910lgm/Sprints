@@ -41,6 +41,12 @@
             <groupId>commons-validator</groupId>
             <artifactId>commons-validator</artifactId>
             <version>1.8.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
