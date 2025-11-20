@@ -1,16 +1,25 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Stack, Divider } from '@mui/material';
 
 const SectionHeader = ({ title, subtitle }: { title: string; subtitle?: string }) => (
-    <Box mb={2}>
-        <Typography variant="h4" fontWeight={700} gutterBottom>
-            {title}
-        </Typography>
+    <Stack direction="row" alignItems="flex-start" spacing={2} mb={3} divider={<Divider orientation="vertical" flexItem />}>
+        <Box>
+            <Typography
+                variant="overline"
+                color="secondary"
+                sx={{ letterSpacing: 2, textTransform: 'uppercase', display: 'block' }}
+            >
+                Highlight
+            </Typography>
+            <Typography variant="h4" fontWeight={800} gutterBottom>
+                {title}
+            </Typography>
+        </Box>
         {subtitle && (
-            <Typography variant="body1" color="text.secondary">
+            <Typography variant="body1" color="text.secondary" maxWidth={480}>
                 {subtitle}
             </Typography>
         )}
-    </Box>
+    </Stack>
 );
 
 export default SectionHeader;
