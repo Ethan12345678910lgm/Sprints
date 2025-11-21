@@ -7,6 +7,7 @@ import App from './App';
 import theme from './theme/theme';
 import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
+import { AppDataProvider } from './context/AppDataContext';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
@@ -14,10 +15,12 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <CssBaseline />
             <BrowserRouter>
                 <AuthProvider>
-                    <CartProvider>
-                        <Toaster position="top-right" />
-                        <App />
-                    </CartProvider>
+                    <AppDataProvider>
+                        <CartProvider>
+                            <Toaster position="top-right" />
+                            <App />
+                        </CartProvider>
+                    </AppDataProvider>
                 </AuthProvider>
             </BrowserRouter>
         </ThemeProvider>

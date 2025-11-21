@@ -14,8 +14,20 @@ import Login from './routes/Login';
 import Register from './routes/Register';
 import CartPage from './routes/CartPage';
 import Checkout from './routes/Checkout';
-import Admin from './routes/Admin';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import Contact from './routes/Contact';
+import AccountDashboard from './routes/account/AccountDashboard';
+import AccountProfile from './routes/account/AccountProfile';
+import AccountOrders from './routes/account/AccountOrders';
+import AccountOrderDetail from './routes/account/AccountOrderDetail';
+import Wishlist from './routes/account/Wishlist';
+import AdminLogin from './routes/admin/AdminLogin';
+import AdminDashboard from './routes/admin/AdminDashboard';
+import AdminProducts from './routes/admin/AdminProducts';
+import AdminProductForm from './routes/admin/AdminProductForm';
+import AdminOrders from './routes/admin/AdminOrders';
+import AdminOrderDetail from './routes/admin/AdminOrderDetail';
+import AdminCustomers from './routes/admin/AdminCustomers';
 
 function App() {
     return (
@@ -31,15 +43,107 @@ function App() {
                     <Route path="/journal" element={<Journal />} />
                     <Route path="/journal/:slug" element={<JournalArticle />} />
                     <Route path="/community" element={<Community />} />
+                    <Route path="/contact" element={<Contact />} />
                     <Route path="/auth/login" element={<Login />} />
                     <Route path="/auth/register" element={<Register />} />
                     <Route path="/cart" element={<CartPage />} />
                     <Route path="/checkout" element={<Checkout />} />
+
+                    <Route
+                        path="/account"
+                        element={
+                            <ProtectedRoute>
+                                <AccountDashboard />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/account/profile"
+                        element={
+                            <ProtectedRoute>
+                                <AccountProfile />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/account/orders"
+                        element={
+                            <ProtectedRoute>
+                                <AccountOrders />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/account/orders/:id"
+                        element={
+                            <ProtectedRoute>
+                                <AccountOrderDetail />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/account/wishlist"
+                        element={
+                            <ProtectedRoute>
+                                <Wishlist />
+                            </ProtectedRoute>
+                        }
+                    />
+
+                    <Route path="/admin/login" element={<AdminLogin />} />
                     <Route
                         path="/admin"
                         element={
-                            <ProtectedRoute>
-                                <Admin />
+                            <ProtectedRoute adminOnly>
+                                <AdminDashboard />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/admin/products"
+                        element={
+                            <ProtectedRoute adminOnly>
+                                <AdminProducts />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/admin/products/new"
+                        element={
+                            <ProtectedRoute adminOnly>
+                                <AdminProductForm />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/admin/products/:id/edit"
+                        element={
+                            <ProtectedRoute adminOnly>
+                                <AdminProductForm />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/admin/orders"
+                        element={
+                            <ProtectedRoute adminOnly>
+                                <AdminOrders />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/admin/orders/:id"
+                        element={
+                            <ProtectedRoute adminOnly>
+                                <AdminOrderDetail />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/admin/customers"
+                        element={
+                            <ProtectedRoute adminOnly>
+                                <AdminCustomers />
                             </ProtectedRoute>
                         }
                     />

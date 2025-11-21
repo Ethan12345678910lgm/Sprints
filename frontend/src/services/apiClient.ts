@@ -26,7 +26,11 @@ const normalizeProduct = (raw: RawProduct): Product => ({
         ? raw.images.map(String)
         : raw.image
             ? [raw.image]
-            : []
+: [],
+    category: raw.category ?? 'tops',
+    stock: Number(raw.stock ?? 0),
+    status: (raw.status as Product['status']) ?? 'draft',
+    createdAt: raw.createdAt ?? new Date().toISOString().split('T')[0]
 });
 
 // Fallback logic for demo when backend is not running

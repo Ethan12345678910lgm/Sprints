@@ -1,20 +1,21 @@
-import { Box, Button, Card, CardContent, Stack, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
+import { Box, Button, Card, CardContent, Stack, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
-const Register = () => {
-    const { register } = useAuth();
+const AdminLogin = () => {
+    const { loginAdmin } = useAuth();
     const navigate = useNavigate();
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirm, setConfirm] = useState('');
+    const [email, setEmail] = useState('admin@example.com');
+    const [password, setPassword] = useState('password');
 
     const submit = async () => {
-        if (password !== confirm) return;
-        await register(name, email, password);
-        navigate('/account');
+        try {
+            await loginAdmin(email, password);
+            navigate('/admin');
+        } catch (error) {
+            // toast handled in context
+        }
     };
 
     return (
@@ -22,10 +23,9 @@ const Register = () => {
             <Card>
                 <CardContent>
                     <Typography variant="h5" fontWeight={700} gutterBottom>
-                        Create account
+                        Admin login
                     </Typography>
                     <Stack spacing={2}>
-                        <TextField label="Name" value={name} onChange={(e) => setName(e.target.value)} fullWidth />
                         <TextField label="Email" value={email} onChange={(e) => setEmail(e.target.value)} fullWidth />
                         <TextField
                             label="Password"
@@ -34,16 +34,12 @@ const Register = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             fullWidth
                         />
-                        <TextField
-                            label="Confirm password"
-                            type="password"
-                            value={confirm}
-                            onChange={(e) => setConfirm(e.target.value)}
-                            fullWidth
-                        />
                         <Button variant="contained" onClick={submit} fullWidth>
-                            Join Ubuntu Threads
+                            Sign in
                         </Button>
+                        <Typography variant="body2" color="text.secondary">
+                            Use admin@example.com / password to access the console.
+                        </Typography>
                     </Stack>
                 </CardContent>
             </Card>
@@ -51,4 +47,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default AdminLogin;

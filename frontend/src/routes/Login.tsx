@@ -1,6 +1,7 @@
-import { Box, Button, Card, CardContent, Stack, TextField, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, Stack, TextField, Typography, Link } from '@mui/material';
 import { useState } from 'react';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
@@ -11,7 +12,7 @@ const Login = () => {
 
     const submit = async () => {
         await login(email, password);
-        navigate('/');
+        navigate('/account');
     };
 
     return (
@@ -30,6 +31,14 @@ const Login = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             fullWidth
                         />
+                        <Link
+                            component="button"
+                            variant="body2"
+                            onClick={() => toast('Reset link sent to your inbox (demo)')}
+                            sx={{ alignSelf: 'flex-start' }}
+                        >
+                            Forgot password?
+                        </Link>
                         <Button variant="contained" onClick={submit} fullWidth>
                             Sign in
                         </Button>
