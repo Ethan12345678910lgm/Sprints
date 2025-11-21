@@ -54,6 +54,8 @@ export type Event = {
     description: string;
     location: string;
     venue: string;
+    latitude: number;
+    longitude: number;
 };
 
 const sharedImages = {
@@ -197,15 +199,17 @@ export const events: Event[] = [
         date: '2024-08-12',
         description: 'Bring pre-loved garments and swap at the Sea Point promenade.',
         location: 'Sea Point, Cape Town',
-        venue: 'Sea Point Promenade'
-    },
+        venue: 'Sea Point Promenade',
+        latitude: -33.9124,
+        longitude: 18.3904    },
     {
         title: 'Makers Market Pop-up',
         date: '2024-09-05',
         description: 'Showcasing co-op partners and live mending.',
         location: 'Woodstock Exchange',
-        venue: '66-68 Albert Rd, Woodstock'
-    }
+        venue: '66-68 Albert Rd, Woodstock',
+        latitude: -33.9282,
+        longitude: 18.4464    }
 ];
 
 export const orders: Order[] = [
