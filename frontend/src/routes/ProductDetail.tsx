@@ -123,7 +123,7 @@ return (
                                             Array.from({ length: quantity }).forEach(() => addItem(product));
                                         }}
                                     >
-                                        Add to Cart
+                                        Add to Bag
                                     </Button>
                                     <Button variant="outlined" onClick={() => addToWishlist(product)}>
                                         Add to Wishlist

@@ -12,11 +12,13 @@ import {
 import { Link as RouterLink } from 'react-router-dom';
 import { Product } from '../data/mockData';
 import { useCart } from '../context/CartContext';
+import { useAppData } from '../context/AppDataContext';
 
 const FALLBACK_IMAGE = 'https://placehold.co/600x400?text=Ubuntu+Threads';
 
 const ProductCard = ({ product }: { product: Product }) => {
     const { addItem } = useCart();
+    const { addToWishlist } = useAppData();
     const coverImage = product.images[0] ?? FALLBACK_IMAGE;
 
     return (
@@ -69,12 +71,17 @@ const ProductCard = ({ product }: { product: Product }) => {
                     ))}
                 </Stack>
             </CardContent>
-            <CardActions sx={{ p: 2, pt: 0 }}>
-                <Button component={RouterLink} to={`/product/${product.id}`} variant="outlined" fullWidth>
-                    Details
-                </Button>
-                <Button variant="contained" fullWidth onClick={() => addItem(product)}>
-                    Add
+            <CardActions sx={{ p: 2, pt: 0, flexDirection: 'column', gap: 1 }}>
+                <Stack direction="row" spacing={1} width="100%">
+                    <Button component={RouterLink} to={`/product/${product.id}`} variant="outlined" fullWidth>
+                        Details
+                    </Button>
+                    <Button variant="contained" fullWidth onClick={() => addItem(product)}>
+                        Add to Bag
+                    </Button>
+                </Stack>
+                <Button variant="text" fullWidth onClick={() => addToWishlist(product)}>
+                    Add to Wishlist
                 </Button>
             </CardActions>
         </Card>
