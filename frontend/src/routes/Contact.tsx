@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import { Box, Button, Card, CardContent, Grid, Stack, TextField, Typography, Alert } from '@mui/material';
 import toast from 'react-hot-toast';
 
@@ -6,7 +6,7 @@ const Contact = () => {
     const [values, setValues] = useState({ name: '', email: '', message: '' });
     const [submitted, setSubmitted] = useState(false);
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
         if (!values.name || !values.email || !values.message) {
             toast.error('Please complete all fields');

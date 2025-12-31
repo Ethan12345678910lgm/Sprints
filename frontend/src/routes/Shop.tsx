@@ -13,8 +13,8 @@ const Shop = () => {
     const [sort, setSort] = useState('newest');
 
     useEffect(() => {
-        const timer = setTimeout(() => setLoading(false), 400);
-        return () => clearTimeout(timer);
+        const timer = window.setTimeout(() => setLoading(false), 400);
+        return () => window.clearTimeout(timer);
     }, []);
 
     const filtered = useMemo(() => {

@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState, type ReactNode } from 'react';
+import { createContext, useContext, useState, type ReactNode } from 'react';
 import toast from 'react-hot-toast';
 import { Product, products as seedProducts, orders as seedOrders, customers as seedCustomers, Order } from '../data/mockData';
 
@@ -113,21 +113,18 @@ export const AppDataProvider = ({ children }: { children: ReactNode }) => {
         toast('Removed from wishlist');
     };
 
-    const value = useMemo(
-        () => ({
-            products,
-            orders,
-            customers,
-            wishlist,
-            addProduct,
-            updateProduct,
-            updateOrderStatus,
-            createOrder,
-            addToWishlist,
-            removeFromWishlist
-        }),
-        [products, orders, customers, wishlist]
-    );
+    const value: AppDataContextValue = {
+        products,
+        orders,
+        customers,
+        wishlist,
+        addProduct,
+        updateProduct,
+        updateOrderStatus,
+        createOrder,
+        addToWishlist,
+        removeFromWishlist
+    };
 
     return <AppDataContext.Provider value={value}>{children}</AppDataContext.Provider>;
 };

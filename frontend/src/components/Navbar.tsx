@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import { ShoppingBag, Heart, UserRound } from 'lucide-react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, type MouseEvent } from 'react';
 import Logo from './Logo';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
@@ -24,7 +24,7 @@ const Navbar = () => {
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-    const handleMenu = (event: React.MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget);
+    const handleMenu = (event: MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget);
     const closeMenu = () => setAnchorEl(null);
 
     const navLinks = [

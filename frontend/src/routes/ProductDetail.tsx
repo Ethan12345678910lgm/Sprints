@@ -32,14 +32,14 @@ const ProductDetail = () => {
     useEffect(() => {
         if (!id) return;
         setLoading(true);
-            const timer = setTimeout(() => {
-                const found = products.find((p) => p.id === Number(id)) ?? null;
-                setProduct(found);
-                setSize(found?.sizes?.[0] ?? '');
-                setLoading(false);
-    }, 300);
-    return () => clearTimeout(timer);
-}, [id, products]);
+        const timer = window.setTimeout(() => {
+            const found = products.find((p) => p.id === Number(id)) ?? null;
+            setProduct(found);
+            setSize(found?.sizes?.[0] ?? '');
+            setLoading(false);
+        }, 300);
+        return () => window.clearTimeout(timer);
+    }, [id, products]);
 
 const related = useMemo(() => {
     if (!product) return [];
