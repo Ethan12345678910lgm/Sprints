@@ -31,9 +31,15 @@ import AdminCustomers from './routes/admin/AdminCustomers';
 
 function App() {
     return (
-        <Box sx={{ background: 'linear-gradient(145deg, #f9f7f2 0%, #f4eddf 55%, #efe4d3 100%)', minHeight: '100vh' }}>
+        <Box
+            sx={{
+                background:
+                    'radial-gradient(circle at 10% 20%, rgba(255,255,255,0.9) 0, rgba(245,235,220,0.6) 35%, rgba(239,228,211,0.85) 100%)',
+                minHeight: '100vh'
+            }}
+        >
             <Navbar />
-            <Container maxWidth="lg" sx={{ py: 4 }}>
+            <Container maxWidth="lg" sx={{ py: { xs: 3, md: 5 } }}>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/shop" element={<Shop />} />

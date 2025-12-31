@@ -13,7 +13,7 @@ import {
     useTheme,
     TextField
 } from '@mui/material';
-import { AutoAwesome, Forest, Handshake, LocalShipping, RestartAlt } from '@mui/icons-material';
+import { ArrowForward, AutoAwesome, CheckCircle, Forest, Handshake, LocalShipping, RestartAlt } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import SectionHeader from '../components/SectionHeader';
 import { products, events } from '../data/mockData';
@@ -96,6 +96,12 @@ const experiences = [
         action: (navigate: ReturnType<typeof useNavigate>) => navigate('/journal'),
         cta: 'View the schedule'
     }
+];
+
+const heroStats = [
+    { label: 'Pieces tailored this month', value: '112', detail: 'Cape Town studio' },
+    { label: 'Average delivery', value: '48h', detail: 'carbon-neutral dispatch' },
+    { label: 'Repairs covered', value: 'Lifetime', detail: 'annual mending credit' }
 ];
 
 const studioAssurances = [
@@ -200,6 +206,26 @@ const Home = () => {
                                     Locally crafted layers designed for sea breezes, sunrise rituals, and market days.
                                     Every piece is cut in small batches with full traceability to our makers.
                                 </Typography>
+                                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5} mt={2}>
+                                    <Button
+                                        variant="contained"
+                                        size="large"
+                                        endIcon={<ArrowForward />}
+                                        onClick={() => navigate('/shop')}
+                                    >
+                                        Shop the capsule
+                                    </Button>
+                                    <Button
+                                        variant="text"
+                                        size="large"
+                                        color="secondary"
+                                        endIcon={<ArrowForward />}
+                                        onClick={() => navigate('/sustainability')}
+                                        sx={{ textTransform: 'none', fontWeight: 700 }}
+                                    >
+                                        Explore our process
+                                    </Button>
+                                </Stack>
                             </Box>
 
                             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems="center">
@@ -227,6 +253,38 @@ const Home = () => {
                                         />
                                     ))}
                                 </Stack>
+                            </Stack>
+
+                            <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
+                                {heroStats.map((stat) => (
+                                    <Card
+                                        key={stat.label}
+                                        variant="outlined"
+                                        sx={{
+                                            p: 2,
+                                            flex: 1,
+                                            borderRadius: 3,
+                                            background: 'linear-gradient(135deg, rgba(255,255,255,0.9), rgba(234,221,201,0.55))'
+                                        }}
+                                    >
+                                        <Stack direction="row" spacing={1.5} alignItems="center">
+                                            <Avatar sx={{ bgcolor: 'primary.light', color: 'primary.dark' }}>
+                                                <CheckCircle />
+                                            </Avatar>
+                                            <Box>
+                                                <Typography variant="subtitle2" color="text.secondary">
+                                                    {stat.label}
+                                                </Typography>
+                                                <Typography variant="h6" fontWeight={800}>
+                                                    {stat.value}
+                                                </Typography>
+                                                <Typography variant="body2" color="text.secondary">
+                                                    {stat.detail}
+                                                </Typography>
+                                            </Box>
+                                        </Stack>
+                                    </Card>
+                                ))}
                             </Stack>
 
                             <Grid container spacing={2} alignItems="stretch">
@@ -309,10 +367,19 @@ const Home = () => {
 
                             <Stack spacing={2}>
                                 {recommendedProducts.map((product) => (
-                                    <Card key={product.id} variant="outlined" sx={{ p: 2, borderRadius: 3 }}>
+                                    <Card
+                                        key={product.id}
+                                        variant="outlined"
+                                        sx={{
+                                            p: 2,
+                                            borderRadius: 3,
+                                            background: 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(228,217,199,0.45))',
+                                            borderColor: 'divider'
+                                        }}
+                                    >
                                         <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
                                             <Box>
-                                                <Typography variant="subtitle1" fontWeight={700}>
+                                                <Typography variant="subtitle1" fontWeight={800}>
                                                     {product.name}
                                                 </Typography>
                                                 <Typography variant="body2" color="text.secondary">
@@ -494,7 +561,6 @@ const Home = () => {
                 </Grid>
             </Box>
 
-
             <Box mt={8}>
                 <SectionHeader
                     title="Studio gatherings"
@@ -571,25 +637,48 @@ const Home = () => {
                     title="Join the Ubuntu Threads list"
                     subtitle="Get capsule drops, maker stories, and studio events in your inbox."
                 />
-                <Card sx={{ p: 3, borderRadius: 4, border: '1px solid', borderColor: 'divider' }}>
-                    <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems={{ xs: 'flex-start', sm: 'center' }}>
-                        <TextField
-                            label="Email"
-                            type="email"
-                            value={newsletterEmail}
-                            onChange={(event) => setNewsletterEmail(event.target.value)}
-                            fullWidth
-                        />
-                        <Button
-                            variant="contained"
-                            size="large"
-                            onClick={() => {
-                                toast.success('You are on the list for the next drop');
-                                setNewsletterEmail('');
-                            }}
-                        >
-                            Sign up
-                        </Button>
+                <Card
+                    sx={{
+                        p: 3,
+                        borderRadius: 4,
+                        border: '1px solid',
+                        borderColor: 'divider',
+                        background: 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(233,221,203,0.5))',
+                        boxShadow: '0 12px 40px rgba(0,0,0,0.06)'
+                    }}
+                >
+                    <Stack spacing={2}>
+                        <Stack direction="row" spacing={1.5} alignItems="center">
+                            <Avatar sx={{ bgcolor: 'secondary.light', color: 'secondary.dark' }}>
+                                <AutoAwesome />
+                            </Avatar>
+                            <Box>
+                                <Typography fontWeight={800}>Stay ahead of each capsule drop</Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Two emails a month, featuring maker notes, new rituals, and workshop invites.
+                                </Typography>
+                            </Box>
+                        </Stack>
+
+                        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems={{ xs: 'flex-start', sm: 'center' }}>
+                            <TextField
+                                label="Email"
+                                type="email"
+                                value={newsletterEmail}
+                                onChange={(event) => setNewsletterEmail(event.target.value)}
+                                fullWidth
+                            />
+                            <Button
+                                variant="contained"
+                                size="large"
+                                onClick={() => {
+                                    toast.success('You are on the list for the next drop');
+                                    setNewsletterEmail('');
+                                }}
+                            >
+                                Sign up
+                            </Button>
+                        </Stack>
                     </Stack>
                 </Card>
             </Box>
