@@ -13,6 +13,7 @@ import {
     useTheme,
     TextField
 } from '@mui/material';
+import { AutoAwesome, Forest, Handshake, LocalShipping, RestartAlt } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import SectionHeader from '../components/SectionHeader';
 import { products, events } from '../data/mockData';
@@ -94,6 +95,61 @@ const experiences = [
         description: 'Learn visible mending and dye techniques from our co-op artisans every Thursday.',
         action: (navigate: ReturnType<typeof useNavigate>) => navigate('/journal'),
         cta: 'View the schedule'
+    }
+];
+
+const studioAssurances = [
+    {
+        title: '48h Cape dispatch',
+        description: 'Carbon-neutral delivery from our Woodstock studio with SMS tracking updates.',
+        icon: LocalShipping
+    },
+    {
+        title: 'Lifetime repairs',
+        description: 'Annual mending credit and visible repair options to keep every piece in rotation.',
+        icon: RestartAlt
+    },
+    {
+        title: 'Traceable fibres',
+        description: 'QR-coded bolts from Western Cape farms and fully auditable dye houses.',
+        icon: Forest
+    }
+];
+
+const moodNotes: Record<'daytime' | 'evening', { title: string; bullets: string[] }> = {
+    daytime: {
+        title: 'Daylight ease',
+        bullets: [
+            'Breathable linens layered for co-working and coastal walks.',
+            'Sunrise palette anchored in clay, sand, and aloe greens.',
+            'Packable silhouettes that dress up with a single accessory.'
+        ]
+    },
+    evening: {
+        title: 'Evening gatherings',
+        bullets: [
+            'Structured layers with contrast stitching and corozo buttons.',
+            'Rooftop-friendly warmth with recycled knits and soft lining.',
+            'Details built for movement: side vents, cuff tabs, and hidden pockets.'
+        ]
+    }
+};
+
+const processMoments = [
+    {
+        label: '1. Fit guidance',
+        detail: 'Share your climate, routines, and fit notes for a curated shortlist within 24h.',
+        badge: 'Concierge'
+    },
+    {
+        label: '2. Make & finish',
+        detail: 'Each piece is pressed, labeled with maker initials, and paired with care cards.',
+        badge: 'Studio'
+    },
+    {
+        label: '3. Delivery & aftercare',
+        detail: 'Carbon-neutral courier, repair credits, and seasonal refresh reminders.',
+        badge: 'Care'
     }
 ];
 
@@ -284,6 +340,37 @@ const Home = () => {
                 </Grid>
             </Grid>
 
+            <Box mt={6}>
+                <SectionHeader
+                    title="Studio guarantees"
+                    subtitle="Every order includes care, transparency, and support from real humans."
+                />
+                <Grid container spacing={2}>
+                    {studioAssurances.map((assurance) => {
+                        const Icon = assurance.icon;
+                        return (
+                            <Grid item xs={12} md={4} key={assurance.title}>
+                                <Card variant="outlined" sx={{ p: 3, borderRadius: 4, height: '100%' }}>
+                                    <Stack direction="row" spacing={2} alignItems="flex-start">
+                                        <Avatar sx={{ bgcolor: 'secondary.light', color: 'secondary.dark' }}>
+                                            <Icon />
+                                        </Avatar>
+                                        <Stack spacing={0.5}>
+                                            <Typography variant="subtitle1" fontWeight={800}>
+                                                {assurance.title}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                                {assurance.description}
+                                            </Typography>
+                                        </Stack>
+                                    </Stack>
+                                </Card>
+                            </Grid>
+                        );
+                    })}
+                </Grid>
+            </Box>
+
             <Box mt={8}>
                 <SectionHeader
                     title="Sustainability metrics"
@@ -312,6 +399,101 @@ const Home = () => {
                     ))}
                 </Grid>
             </Box>
+
+            <Box mt={8}>
+                <SectionHeader
+                    title="Capsule moodboard"
+                    subtitle="See how the current palette translates into lived-in outfits."
+                />
+                <Grid container spacing={3}>
+                    <Grid item xs={12} md={7}>
+                        <Card sx={{ p: 3, borderRadius: 4, border: '1px solid', borderColor: 'divider' }}>
+                            <Stack spacing={2}>
+                                <Stack direction="row" spacing={1} alignItems="center">
+                                    <Avatar sx={{ bgcolor: paletteBadges[activeTheme][1], color: 'white' }}>
+                                        <AutoAwesome />
+                                    </Avatar>
+                                    <Box>
+                                        <Typography variant="subtitle1" fontWeight={800}>
+                                            {capsuleThemes.find((item) => item.id === activeTheme)?.title}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            {moodNotes[activeMood].title}
+                                        </Typography>
+                                    </Box>
+                                </Stack>
+                                <Divider />
+                                <Stack spacing={1.5}>
+                                    {moodNotes[activeMood].bullets.map((note) => (
+                                        <Stack key={note} direction="row" spacing={1.5} alignItems="flex-start">
+                                            <Chip
+                                                size="small"
+                                                label={activeMood === 'daytime' ? 'Soft light' : 'After dusk'}
+                                                color={activeMood === 'daytime' ? 'primary' : 'secondary'}
+                                                variant="outlined"
+                                            />
+                                            <Typography variant="body2" color="text.secondary">
+                                                {note}
+                                            </Typography>
+                                        </Stack>
+                                    ))}
+                                </Stack>
+                            </Stack>
+                        </Card>
+                    </Grid>
+                    <Grid item xs={12} md={5}>
+                        <Card
+                            sx={{
+                                p: 3,
+                                borderRadius: 4,
+                                height: '100%',
+                                border: '1px solid',
+                                borderColor: 'divider',
+                                background: 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(233,222,202,0.45))'
+                            }}
+                        >
+                            <Stack spacing={2}>
+                                <Typography variant="overline" color="secondary">
+                                    Studio rhythm
+                                </Typography>
+                                {processMoments.map((moment) => (
+                                    <Stack
+                                        key={moment.label}
+                                        direction="row"
+                                        spacing={1.5}
+                                        alignItems="flex-start"
+                                        sx={{
+                                            p: 1.5,
+                                            borderRadius: 3,
+                                            border: '1px dashed',
+                                            borderColor: 'divider',
+                                            backgroundColor: 'rgba(255,255,255,0.65)'
+                                        }}
+                                    >
+                                        <Chip label={moment.badge} size="small" color="secondary" variant="outlined" />
+                                        <Box>
+                                            <Typography variant="subtitle2" fontWeight={700}>
+                                                {moment.label}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                                {moment.detail}
+                                            </Typography>
+                                        </Box>
+                                    </Stack>
+                                ))}
+                                <Button
+                                    variant="contained"
+                                    startIcon={<Handshake />}
+                                    onClick={() => navigate('/contact')}
+                                >
+                                    Talk to our studio team
+                                </Button>
+                            </Stack>
+                        </Card>
+                    </Grid>
+                </Grid>
+            </Box>
+
 
             <Box mt={8}>
                 <SectionHeader
